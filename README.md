@@ -1,7 +1,9 @@
 # elemental-composition
 Classify the compounds into classes based on elemental composition
 
-The spreadsheet should have data like following format with elements(carbon, hydrogen, oxygen, nitrogen, sulphur, phosphorous) and the number of atoms.
+The spreadsheet should have data like following format with elements(carbon, hydrogen, oxygen, nitrogen, sulphur, phosphorous) and the number of atoms. 
+
+Data output will be in a format which can be used to plot in a tool such as [Origin](https://en.wikipedia.org/wiki/Origin_(data_analysis_software)). 
 
 ```
 C	H	O	N	S	P
