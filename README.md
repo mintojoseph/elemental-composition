@@ -15,8 +15,10 @@ Data output will be in a format which can be used to plot in a tool such as [Ori
 
 Usage:
 ```
+pip install -r requirements.txt
+
 $ python main.py -h
-usage: main.py [-h] [-i INPUTFILE] [-o OUTPUTFILE] [-w OUTPUTWORKSHEET]
+usage: main.py [-h] [-i INPUTFILE]
 
 Molecular characterization
 
@@ -24,9 +26,5 @@ optional arguments:
   -h, --help            show this help message and exit
   -i INPUTFILE, --inputfile INPUTFILE
                         Input Excel file
-  -o OUTPUTFILE, --outputfile OUTPUTFILE
-                        Output Excel file
-  -w OUTPUTWORKSHEET, --outputworksheet OUTPUTWORKSHEET
-                        Output worksheet name
 ```
 
