@@ -1,26 +1,29 @@
-import argparse
 import pandas as pd
+import argparse
 
 parser = argparse.ArgumentParser(description="Molecular characterization")
 parser.add_argument('-i', '--inputfile', type=str, help="Input Excel file")
-parser.add_argument('-o', '--outputfile', type=str, help="Output Excel file")
-parser.add_argument('-w', '--outputworksheet', type=str, help="Output worksheet name. Creates a new one")
 args = parser.parse_args()
 
-def data_composition(fpath):
-    df = pd.read_excel(fpath)
-    # print("Data Frame: \n $df",df)
-    cols = df.columns
-    positive = df.apply(lambda x: x > 0)
-    composition = positive.apply(lambda x: list(cols[x.values]), axis=1)
-    # print(composition)
-    clean = composition.apply(' '.join)
-    print("Cleaned Data: \n ",clean)
-    return clean
+# Load the Excel file into a pandas ExcelFile object
+excel_file = pd.ExcelFile(args.inputfile)
 
-def append_to_excel(fpath, df, sheet_name):
-    with pd.ExcelWriter(fpath, mode="a") as f:
-        df.to_excel(f, sheet_name=sheet_name)
+# Define a function to determine the "type" based on elemental composition
+def determine_type(row):
+    elements = ['C', 'H', 'O', 'N', 'S', 'P']
+    type_str = ''.join([element for element in elements if row[element] > 0])
+    return type_str
 
-print ("Writing to File: ",args.outputfile, "Worksheet: ", args.outputworksheet)
-append_to_excel(args.outputfile, data_composition(args.inputfile), args.outputworksheet)
+# Create a new Excel writer to save the modified file
+with pd.ExcelWriter(args.inputfile, mode='a', if_sheet_exists='replace' ) as writer:
+    # Iterate through each worksheet
+    for sheet_name in excel_file.sheet_names:
+        # Read the worksheet into a DataFrame
+        df = excel_file.parse(sheet_name)
+        # Apply the determine_type function to add the "type" column
+        df['type'] = df.apply(determine_type, axis=1)
+        
+        # Write the modified DataFrame back to the Excel file
+        df.to_excel(writer, sheet_name=sheet_name, index=False)
+
+print("Type column added to all worksheets in the output file.")
