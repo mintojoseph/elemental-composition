@@ -17,7 +17,7 @@ Usage:
 ```
 pip install -r requirements.txt
 
-$ python main.py -h
+$ python elemental_composition.py -h
 usage: main.py [-h] [-i INPUTFILE]
 
 Molecular characterization
@@ -28,3 +28,16 @@ optional arguments:
                         Input Excel file
 ```
 
+For Biochemical Classification
+
+```
+python biochemical_classification.py -h
+usage: biochemical_classification.py [-h] [-i INPUTFILE]
+
+Biochemical Classification
+
+options:
+  -h, --help            show this help message and exit
+  -i INPUTFILE, --inputfile INPUTFILE
+                        Input Excel file
+```                        
