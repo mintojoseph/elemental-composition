@@ -19,7 +19,7 @@ def classify_element_classI(row):
         elif 1.5 <= row['H/C'] <= 2:
             return 'Aliphatics'
         else:
-            return 'Unknown'  # Default class if none of the conditions are met
+            return 'Unclassified'  # Default class if none of the conditions are met
     except TypeError:
         return np.nan  # Return NaN for rows with "#DIV/0!" values
 
@@ -57,7 +57,7 @@ def classify_element_classIII(row):
         ):
             return 'CRAM'
         else:
-            return 'Unknown'  # Default class if none of the conditions are met
+            return 'Unclassified'  # Default class if none of the conditions are met
     except TypeError:
         return np.nan  # Return NaN for rows with "#DIV/0!" values
 
